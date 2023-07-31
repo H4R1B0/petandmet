@@ -47,6 +47,10 @@ public class Animal {
     @OneToOne(mappedBy = "animal")
     private Donate donate;
 
+    @ManyToOne
+    @JoinColumn(name = "liva_id")
+    private Live live;
+
     @Builder
     public Animal(String uuid, Center center, String name, int age, String specie, String breed, String findPlace, LocalDateTime enterDate, String photoUrl) {
         this.uuid = uuid;
