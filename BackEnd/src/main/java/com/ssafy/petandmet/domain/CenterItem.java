@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "items")
+@Table(name = "center_items")
 @Getter
 @Setter
 @Builder
@@ -28,7 +29,7 @@ import java.util.List;
 public class CenterItem {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "center_items_id")
     private Long id;
 
