@@ -46,9 +46,9 @@ public class UserApiController {
                     .stream()
                     .map(o -> new MileageResponse(o))
                     .collect(Collectors.toList());
-            return new Result("성공", response, "null");
+            return new Result(true, response, "null");
         }
-        return new Result("false", "null", "null");
+        return new Result(false, "null", "null");
     }
 
     /**
