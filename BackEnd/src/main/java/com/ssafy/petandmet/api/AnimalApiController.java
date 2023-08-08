@@ -20,7 +20,7 @@ public class AnimalApiController {
 
     private final AnimalService animalService;
 
-    @GetMapping("api/v1/animal/page")
+    @GetMapping("api/v1/animal")
     public Result findAll(@PageableDefault(size = 10) Pageable pageable) {
         Page<Animal> findAnimal = animalService.findAll(pageable);
 
@@ -49,7 +49,7 @@ public class AnimalApiController {
         return new Result(false, "null", "null");
     }
 
-    @GetMapping("api/v1/animal")
+    @GetMapping("api/v1/animal/detail")
     public Result GetAnimal(@RequestParam String uuid) {
         try {
             FindAnimalByIdResponse response = animalService.findOne(uuid);
