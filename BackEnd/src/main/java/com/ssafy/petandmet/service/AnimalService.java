@@ -64,7 +64,7 @@ public class AnimalService {
                 .enterAge(findAnimal.getEnterAge())
                 .gender(findAnimal.getGender())
                 .adoptionStatus(findAnimal.getAdoptionStatus())
-                .adotionStartDate(findAnimal.getAdoptionStartDate())
+                .adoptionStartDate(findAnimal.getAdoptionStartDate())
                 .noticeDate(findAnimal.getNoticeDate())
                 .character(findAnimal.getCharacterType())
                 .photoUrl(findAnimal.getPhotoUrl())
