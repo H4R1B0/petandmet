@@ -1,11 +1,12 @@
 package com.ssafy.petandmet.dto.animal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CreateAnimalRequest implements Serializable {
     private String name;
     private int age;
@@ -34,8 +36,6 @@ public class CreateAnimalRequest implements Serializable {
     private String noticeDate;
     @JsonProperty("adoption_start_date")
     private LocalDateTime adoptionStartDate;
-    
-    private CharacterType character;
 
-    private MultipartFile image;
+    private CharacterType character;
 }
