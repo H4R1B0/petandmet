@@ -44,7 +44,7 @@ public class DonateApiController {
         }
     }
 
-    @GetMapping("api/v1/donate")
+    @GetMapping("api/v1/donate/item")
     public Result getPossibleDonateItem(@RequestParam String uuid) {
         List<CenterItem> possibleCenterItem = donateService.findPossibleItem(uuid);
 
