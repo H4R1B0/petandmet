@@ -32,6 +32,8 @@ public class TokenProvider {
     private final String AUTHENTICATION_PREFIX;
     private final String AUTHORITIES_KEY = "auth";
     private final long ACCESS_TOKEN_EXPIRATION_TIME;
+
+    private final long TEST_ACCESS_TOKEN_EXPIRATION_TIME;
     private final long REFRESH_TOKEN_EXPIRATION_TIME;
     private Key signKey = null;
 
@@ -39,11 +41,13 @@ public class TokenProvider {
             @Value("${spring.jwt.prefix}") String authenticationPrefix,
             @Value("${spring.jwt.secret}") String secretKey,
             @Value("${spring.jwt.token.access-expiration-time}") long accessExpirationTime,
+            @Value("${spring.jwt.token.test-access-expiration-time}") long testAccessExpirationTime,
             @Value("${spring.jwt.token.refresh-expiration-time}") long refreshExpirationTime
     ) {
         this.AUTHENTICATION_PREFIX = authenticationPrefix;
         this.SECRET_KEY = secretKey;
         this.ACCESS_TOKEN_EXPIRATION_TIME = accessExpirationTime;
+        this.TEST_ACCESS_TOKEN_EXPIRATION_TIME = testAccessExpirationTime;
         this.REFRESH_TOKEN_EXPIRATION_TIME = refreshExpirationTime;
     }
 
@@ -116,7 +120,7 @@ public class TokenProvider {
         long now = (new Date()).getTime();
         log.debug("now = " + now);
         // Access Token 생성
-        Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRATION_TIME);
+        Date accessTokenExpiresIn = new Date(now + TEST_ACCESS_TOKEN_EXPIRATION_TIME);
         log.debug("accessTokenExpiresIn = " + accessTokenExpiresIn);
         String accessToken = createAccessToken(authentication.getName(), authorities, accessTokenExpiresIn);
         log.debug("123123");
@@ -142,7 +146,7 @@ public class TokenProvider {
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRATION_TIME);
+        Date accessTokenExpiresIn = new Date(now + TEST_ACCESS_TOKEN_EXPIRATION_TIME);
         String accessToken = createAccessToken(authentication.getName(), authorities, accessTokenExpiresIn);
 
         return Token.builder()
