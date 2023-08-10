@@ -44,7 +44,7 @@ public class TestUserService {
     public Token refresh(HttpServletRequest request) {
         String jwtToken = resolveToken(request);
 
-        if (jwtToken != null && tokenProvider.validateToken(jwtToken)) {
+        if (jwtToken != null && !tokenProvider.validateToken(jwtToken)) {
             Token refreshToken = refreshTokenRepository.findById(jwtToken).orElseThrow(() -> {
                 throw new NullPointerException();
             });
