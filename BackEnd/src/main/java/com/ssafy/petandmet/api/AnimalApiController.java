@@ -36,7 +36,7 @@ public class AnimalApiController {
         if (!findAnimal.isEmpty()) {
             List<FindAllAnimalResponse> response = findAnimal.stream()
                     .map(o -> {
-                        if (o.getPhotoUrl() != null) {
+                        if (o.getPhotoUrl() != null && !o.getPhotoUrl().equals("")) {
                             String profileUrl = s3Service.getProfileUrl(o.getPhotoUrl());
                             o.setPhotoUrl(profileUrl);
                             return new FindAllAnimalResponse(o);
