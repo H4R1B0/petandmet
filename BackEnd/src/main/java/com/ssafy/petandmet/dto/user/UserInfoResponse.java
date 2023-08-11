@@ -1,10 +1,7 @@
 package com.ssafy.petandmet.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ssafy.petandmet.domain.Center;
-import com.ssafy.petandmet.domain.DonateGradeType;
-import com.ssafy.petandmet.domain.Interest;
-import com.ssafy.petandmet.domain.WalkGradeType;
+import com.ssafy.petandmet.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +19,8 @@ public class UserInfoResponse {
     private String name;
     private String email;
     private String phone;
+    @JsonProperty("role_type")
+    private RoleType roleType;
     private int attendance;
 //    private String donateGrade;
 //    private WalkGradeType walkGrade;
