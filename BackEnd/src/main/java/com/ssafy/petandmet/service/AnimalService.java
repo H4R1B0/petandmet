@@ -49,8 +49,10 @@ public class AnimalService {
             throw new NullPointerException();
         });
 
-        String profileUrl = s3Service.getProfileUrl(findAnimal.getPhotoUrl());
-        findAnimal.setPhotoUrl(profileUrl);
+        if (findAnimal.getPhotoUrl() != null && !findAnimal.getPhotoUrl().equals("")) {
+            String profileUrl = s3Service.getProfileUrl(findAnimal.getPhotoUrl());
+            findAnimal.setPhotoUrl(profileUrl);
+        }
 
         FindAnimalByIdResponse response = FindAnimalByIdResponse.builder()
                 .message("강아지 조회 성공")
