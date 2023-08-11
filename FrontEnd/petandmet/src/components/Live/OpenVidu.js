@@ -2,7 +2,6 @@ import { OpenVidu } from "openvidu-browser";
 
 import axios from "axios";
 import React, { Component } from "react";
-import "./App.css";
 import UserVideoComponent from "./UserVideoComponent";
 
 const OPENVIDU_SERVER_URL = "https://i9b302.p.ssafy.io/ov/openvidu";
