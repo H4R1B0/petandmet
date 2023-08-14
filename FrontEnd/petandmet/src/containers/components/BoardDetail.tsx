@@ -5,10 +5,20 @@ import TextField from '@mui/material/TextField'
 import logo from 'images/new_logo.jpg'
 import { useLocation} from 'react-router-dom'
 
+
+interface CenterBoard {
+  id: number;
+  title: string;
+  content: string | null;
+  type: string;
+  board_photo_url: string | null;
+  created_at: string | null;
+  user_uuid : string,
+}
 function BoardDetail() {
  
   const location = useLocation();
-  const board = location.state
+  const board = location.state as CenterBoard
   console.log(board)
   return (
     <>
@@ -30,7 +40,7 @@ function BoardDetail() {
             }}
           />
 
-          <img src={board.photoUrl} alt={logo}></img>
+          <img src={board.board_photo_url} alt={logo}></img>
 
           <TextField
             id="outlined-multiline-static"
