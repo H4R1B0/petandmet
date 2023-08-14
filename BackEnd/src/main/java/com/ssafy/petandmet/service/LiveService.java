@@ -44,7 +44,7 @@ public class LiveService {
         return liveRepository.findLiveDetail(id);
     }
 
-    public void createLive(CreateLiveRequest request) {
+    public Long createLive(CreateLiveRequest request) {
 
         Center center = centerRepository.findById(request.getCenterUuid()).orElseThrow(() -> {
             throw new NullPointerException();
@@ -70,7 +70,8 @@ public class LiveService {
                 .build();
         live.setCenterItem(centerItems);
 
-        liveRepository.save(live);
+        Live save = liveRepository.save(live);
+        return save.getId();
     }
 
     public void deleteLive(Long id) {
