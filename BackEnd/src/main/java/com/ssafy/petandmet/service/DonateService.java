@@ -58,6 +58,9 @@ public class DonateService {
         User user = userRepository.findById(request.getUserUuid()).orElseThrow(() -> {
             throw new NullPointerException();
         });
+        Animal animal = animalRepository.findById(request.getAnimalUuid()).orElseThrow(() -> {
+            throw new NullPointerException();
+        });
         Center center = centerRepository.findById(request.getCenterUuid()).orElseThrow(() -> {
             throw new NullPointerException();
         });
@@ -67,6 +70,7 @@ public class DonateService {
 
         Donate donate = Donate.builder()
                 .user(user)
+                .animal(animal)
                 .center(center)
                 .centerItem(item)
                 .price(request.getDonatePrice())
