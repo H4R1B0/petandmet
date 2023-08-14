@@ -12,6 +12,8 @@ public class CreateCenterItemDonateRequest {
 
     @JsonProperty("user_uuid")
     private String userUuid;
+    @JsonProperty("animal_uuid")
+    private String animalUuid;
     @JsonProperty("center_item_id")
     private Long itemId;
     @JsonProperty("center_uuid")
