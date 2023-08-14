@@ -26,9 +26,9 @@ public class LiveApiController {
     @PostMapping("api/v1/live")
     public Result createLive(@RequestBody CreateLiveRequest request) {
         try {
-            liveService.createLive(request);
+            Long liveId = liveService.createLive(request);
 
-            CreateLiveResponse response = new CreateLiveResponse("라이브 등록 성공", "200");
+            CreateLiveResponse response = new CreateLiveResponse("라이브 등록 성공", "200", liveId);
             return new Result(true, response, "null");
         } catch (Exception e) {
             return new Result(false, "null", e.getMessage());
