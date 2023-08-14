@@ -11,7 +11,7 @@ interface CenterBoard {
   title: string;
   content: string | null;
   type: string;
-  board_photo_url: string | null;
+  board_photo_url: string | null | undefined;
   created_at: string | null;
   user_uuid : string,
 }
