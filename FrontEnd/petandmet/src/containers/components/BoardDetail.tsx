@@ -3,21 +3,19 @@ import { Container, Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import logo from 'images/new_logo.jpg'
-import { useLocation} from 'react-router-dom'
-
+import { useLocation } from 'react-router-dom'
 
 interface CenterBoard {
-  id: number;
-  title: string;
-  content: string | null;
-  type: string;
-  board_photo_url: string | null | undefined;
-  created_at: string | null;
-  user_uuid : string,
+  id: number
+  title: string
+  content: string | null
+  type: string
+  board_photo_url: string | undefined
+  created_at: string | null
+  user_uuid: string
 }
 function BoardDetail() {
- 
-  const location = useLocation();
+  const location = useLocation()
   const board = location.state as CenterBoard
   console.log(board)
   return (
