@@ -144,7 +144,7 @@ public class AnimalService {
     }
 
     public Page<FindAnimalBySearchResponse> findAnimalBySearch(Map<String, String> map, Pageable pageable) {
-        return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), pageable);
+        return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), map.get("centerUuid"),pageable);
     }
 
     public Page<Animal> findAll(Pageable pageable) {
