@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Button } from '@mui/material'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { domain } from 'hooks/customQueryClient';
@@ -17,6 +17,7 @@ interface AnimalsData {
 }
 
 interface Center{
+  uuid : string | null,
   name: string | null,
   address : string | null,
   email : string | null,
@@ -33,11 +34,12 @@ interface ItemsData{
 
 function CenterPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [center, setCenter] = useState<Center | null>(null); 
   const [animals, setAnimalData] = useState<AnimalsData[]>([]);
   const [items, setItems] = useState<ItemsData[]|null>(null);
+  // console.log(location.state)
 
-  console.log(location.state)
   useEffect(() => {
     async function fetchAnimalData() {
       try {
@@ -63,9 +65,11 @@ function CenterPage() {
     fetchAnimalData();
   }, []);
 
-  // console.log(animals);
-  // console.log(center);
-  // console.log(items);
+  const updateCenter = () =>{
+    navigate('/admin/update', {state : center})
+  }
+
+
   return (
     <>
       <Container
@@ -103,7 +107,7 @@ function CenterPage() {
             <span>{center? center.email : 'Center E-mail'}</span>
           </Grid>
           <Grid xs={2} sx={{ textAlign: 'end' }}>
-            <Button>수정</Button>
+            <Button onClick={updateCenter}>수정</Button>
           </Grid>
         </Grid>
         <Grid>
