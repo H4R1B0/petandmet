@@ -38,7 +38,6 @@ function CenterPage() {
   const [center, setCenter] = useState<Center | null>(null); 
   const [animals, setAnimalData] = useState<AnimalsData[]>([]);
   const [items, setItems] = useState<ItemsData[]|null>(null);
-  // console.log(location.state)
 
   useEffect(() => {
     async function fetchAnimalData() {
