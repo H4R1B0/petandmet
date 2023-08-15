@@ -38,6 +38,7 @@ import QnaUpdate from 'components/Board/QnaUpdate'
 import UpdateCenter from 'components/Center/Update/CenterUpdate'
 import ItemRegister from 'components/Center/CenterItemEnroll'
 import UpdateCenterItem from 'components/Center/Update/CenterUpdateItem'
+import UpdateCenterAnimal from 'components/Center/Update/CenterUPdateAnimal'
 const App = () => {
   return (
     <BrowserRouter>
@@ -88,6 +89,7 @@ const App = () => {
         <Route path='/admin/update' element={<UpdateCenter/>}/>
         <Route path='/item/enroll' element={<ItemRegister/>}/>
         <Route path='/item/update' element={<UpdateCenterItem/>}/>
+        <Route path='/animal/update' element={<UpdateCenterAnimal/>}/>
       </Routes>
     </BrowserRouter>
   )
