@@ -36,6 +36,7 @@ import DonateUpdate from 'components/Board/DonateReviewUpdate'
 import NoticeUpdate from 'components/Board/NoticeUpdate'
 import QnaUpdate from 'components/Board/QnaUpdate'
 import UpdateCenter from 'components/Center/Update/CenterUpdate'
+import ItemRegister from 'components/Center/CenterItemEnroll'
 const App = () => {
   return (
     <BrowserRouter>
@@ -84,6 +85,7 @@ const App = () => {
         <Route path='/comm/notice/detail/update/:id' element={<NoticeUpdate/>}/>
         <Route path='/comm/qna/detail/update/:id' element={<QnaUpdate/>}/>
         <Route path='/admin/update' element={<UpdateCenter/>}/>
+        <Route path='/item/enroll' element={<ItemRegister/>}/>
       </Routes>
     </BrowserRouter>
   )

@@ -68,7 +68,9 @@ function CenterPage() {
   const updateCenter = () =>{
     navigate('/admin/update', {state : center})
   }
-
+  const EnrollItem = () => {
+    navigate('/item/enroll')
+  }
 
   return (
     <>
@@ -172,7 +174,7 @@ function CenterPage() {
           </Grid>
           <Grid xs={10} sx={{ textAlign: 'end' }}>
             <Button>더보기</Button>
-            <Button>수정</Button>
+            <Button onClick={EnrollItem}>등록</Button>
           </Grid>
           <Box
             sx={{
