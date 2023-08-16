@@ -1,5 +1,6 @@
 package com.ssafy.petandmet.dto.animal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -21,8 +22,10 @@ public class FindAnimalBySearchResponse {
     private String noticeDate;
 
     private CharacterType character;
+    @JsonProperty("animal_photo_url")
+    private String photoUrl;
 
-    public FindAnimalBySearchResponse(String name, int age, String specie, String breed, String findPlace, String centerUuid, LocalDateTime enteredDate, AdoptionStatus adoptionStatus, LocalDateTime adoptionStartDate, Gender gender, int enterAge, String noticeDate, CharacterType character) {
+    public FindAnimalBySearchResponse(String name, int age, String specie, String breed, String findPlace, String centerUuid, LocalDateTime enteredDate, AdoptionStatus adoptionStatus, LocalDateTime adoptionStartDate, Gender gender, int enterAge, String noticeDate, CharacterType character, String photoUrl) {
         this.name = name;
         this.age = age;
         this.specie = specie;
@@ -36,5 +39,6 @@ public class FindAnimalBySearchResponse {
         this.enterAge = enterAge;
         this.noticeDate = noticeDate;
         this.character = character;
+        this.photoUrl = photoUrl;
     }
 }
