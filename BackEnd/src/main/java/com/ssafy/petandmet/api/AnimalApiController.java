@@ -55,28 +55,29 @@ public class AnimalApiController {
     @Operation(summary = "동물 필터링조회", description = "동물을 필터링해서 조회(페이징)합니다")
     public Result GetAnimalBySearch(@RequestParam Map<String, String> map, @PageableDefault(size = 10) Pageable pageable) {
         log.debug(pageable.toString());
-        Page<FindAnimalBySearchResponse> findAnimal = animalService.findAnimalBySearch(map, pageable);
-        Map<String, Object> result = new HashMap<>();
-        result.put("animals", findAnimal.getContent());
-        result.put("total", findAnimal.getTotalElements());
+        Page<Animal> findAnimal = animalService.findAnimalBySearch(map, pageable);
 
         if (!findAnimal.isEmpty()) {
+            List<FindAnimalBySearchResponse> response = findAnimal.stream()
+                    .map(o -> {
+                        if (o.getPhotoUrl() != null && !o.getPhotoUrl().equals("")) {
+                            String profileUrl = s3Service.getProfileUrl(o.getPhotoUrl());
+                            o.setPhotoUrl(profileUrl);
+                            return new FindAnimalBySearchResponse(o);
+                        }
+                        o.setPhotoUrl(null);
+                        return new FindAnimalBySearchResponse(o);
+                    })
+                    .collect(toList());
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("animals", response);
+            result.put("total", response.size());
+
             return new Result(true, result, "null");
         }
+
         return new Result(false, "null", "null");
-    }
-
-    @GetMapping("api/v1/animal/detail")
-    @Operation(summary = "동물 상세조회", description = "1마리의 특정 동물만 조회합니다")
-    public Result GetAnimal(@RequestParam String uuid) {
-        try {
-            FindAnimalByIdResponse response = animalService.findOne(uuid);
-
-            return new Result(true, response, "null");
-
-        } catch (Exception e) {
-            return new Result(false, "null", e.getMessage());
-        }
     }
 
     @DeleteMapping("api/v1/animal/{id}")
