@@ -15,6 +15,8 @@ public class FindAllAnimalResponse {
     private String breed;
     @JsonProperty("animal_photo_url")
     private String photoUrl;
+    private Gender gender;
+    private CharacterType character;
 
     public FindAllAnimalResponse(Animal animal) {
         this.animalUuid = animal.getUuid();
@@ -23,5 +25,7 @@ public class FindAllAnimalResponse {
         this.specie = animal.getSpecie();
         this.breed = animal.getBreed();
         this.photoUrl = animal.getPhotoUrl();
+        this.gender = animal.getGender();
+        this.character = animal.getCharacterType();
     }
 }
