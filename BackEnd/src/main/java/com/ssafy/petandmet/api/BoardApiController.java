@@ -171,7 +171,7 @@ public class BoardApiController {
             response.put("status", 200);
             response.put("message", "후원후기 게시판 정보 전체조회 성공");
             response.put("total", findBoard.getTotalElements());
-            response.put("boards",findBoard);
+            response.put("boards",findBoard.getContent());
             return new Result(true, response, "null");
         } catch (Exception e){
             response.put("status", 500);
@@ -268,7 +268,7 @@ public class BoardApiController {
             response.put("status", 200);
             response.put("message", "공지사항 게시판 정보 전체조회 성공");
             response.put("total", findBoard.getTotalElements());
-            response.put("boards",findBoard);
+            response.put("boards",findBoard.getContent());
             return new Result(true, response, "null");
         } catch (Exception e){
             response.put("status", 500);
@@ -364,7 +364,7 @@ public class BoardApiController {
             response.put("status", 200);
             response.put("message", "QNA 게시판 정보 전체조회 성공");
             response.put("total", findBoard.getTotalElements());
-            response.put("boards",findBoard);
+            response.put("boards",findBoard.getContent());
             return new Result(true, response, "null");
         } catch (Exception e){
             response.put("status", 500);
