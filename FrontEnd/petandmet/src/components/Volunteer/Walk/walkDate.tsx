@@ -15,6 +15,15 @@ function WalkDate() {
   const phone = centerData?.phone;
   const address = centerData?.address;
 
+  let selectedDate = value?.format("YYYY-MM-DD");
+  let selectedHour = value?.hour();
+
+  // PM 시간 대 (12:00 PM 이후)를 조정
+  // if (value?.format("A") === "PM" && selectedHour) {
+  //   selectedHour += 12;
+  // }
+  const selectedTime = String(selectedHour).padStart(2, "0"); // 시간을 두 자릿수 형식으로 변경 (예: 05, 13 등)
+
   return (
     <>
       <LocalizationProvider
