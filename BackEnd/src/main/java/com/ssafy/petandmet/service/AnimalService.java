@@ -143,7 +143,7 @@ public class AnimalService {
         animalRepository.save(animal);
     }
 
-    public Page<FindAnimalBySearchResponse> findAnimalBySearch(Map<String, String> map, Pageable pageable) {
+    public Page<Animal> findAnimalBySearch(Map<String, String> map, Pageable pageable) {
         return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), map.get("centerUuid"),pageable);
     }
 
