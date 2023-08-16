@@ -100,11 +100,11 @@ public class AnimalApiController {
     @Operation(summary = "동물 등록", description = "동물을 등록합니다")
     public Result createAnimal(@RequestPart CreateAnimalRequest request, @RequestPart(required = false) MultipartFile image) {
         try {
-            log.debug('File Test : 파일 테스트');
+            log.debug("File Test : 파일 테스트");
             log.debug(request.toString());
             log.debug(image);
             log.debug(image.toString);
-            log.debug('File Test : 파일 테스트 종료');
+            log.debug("File Test : 파일 테스트 종료");
             animalService.join(image, request);
 
             AnimalResponse response = new AnimalResponse(200, "강아지 정보 등록 성공");
