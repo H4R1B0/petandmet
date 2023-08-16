@@ -10,8 +10,6 @@ const KakaoCharge: React.FC = () => {
 
   const [isScriptLoaded, setScriptLoaded] = useState(false);
   const { accessToken, userUuid } = useAccessToken();
-  console.log("액세스 accessToken");
-  console.log(accessToken);
 
   useEffect(() => {
     const script = document.createElement("script");
