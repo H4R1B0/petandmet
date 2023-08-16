@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class FindAnimalBySearchResponse {
+    private String uuid;
     private String name;
     private int age;
     private String specie;
@@ -27,6 +28,7 @@ public class FindAnimalBySearchResponse {
     private String photoUrl;
 
     public FindAnimalBySearchResponse(Animal animal) {
+        this.uuid = animal.getUuid();
         this.name = animal.getName();
         this.age = animal.getAge();
         this.specie = animal.getSpecie();
