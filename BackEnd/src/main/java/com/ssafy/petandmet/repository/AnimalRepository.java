@@ -19,9 +19,10 @@ public interface AnimalRepository extends JpaRepository<Animal, String> {
     List<Animal> findByName(String name);
 
     @Query("SELECT new com.ssafy.petandmet.dto.animal.FindAnimalBySearchResponse" +
-            "(a.name, a.age, a.specie, a.breed, a.findPlace, a.center.uuid, a.enterDate, a.adoptionStatus, a.adoptionStartDate, a.gender, a.enterAge, a.noticeDate, a.characterType)" +
+            "(a.name, a.age, a.specie, a.breed, a.findPlace, a.center.uuid, a.enterDate, a.adoptionStatus, a.adoptionStartDate, a.gender, a.enterAge, a.noticeDate, a.characterType, a.photoUrl)" +
             " FROM Animal a where (:name is null or a.name = :name) and (:specie is null or a.specie = :specie) and (:breed is null or a.breed = :breed) and (:centerUuid is null or a.center.uuid = :centerUuid)")
     Page<FindAnimalBySearchResponse> findAnimalBySearch(String name, String specie, String breed, String centerUuid, Pageable pageable);
+
 
 
     @Query("select count(a) from Animal a where a.center.uuid = :uuid")
