@@ -34,8 +34,6 @@ const CenterDataList = async () => {
     const response = await axios.get(`${domain}/center?page=0`);
     const centersData = response.data.response.boards;
     useCenterStore.getState().setCentersData(centersData);
-    console.log("센터 데이터 centersData");
-    console.log(centersData);
     return centersData;
   } catch (error) {
     console.log(error);

@@ -14,7 +14,10 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import CenterDataList from "hooks/Center/CenterMutation";
+import { useNavigate } from "react-router-dom";
+import { domain } from "hooks/customQueryClient";
 import { useCenterData } from "hooks/Center/useCenterData";
+import { useCenterStore } from "hooks/Center/CenterMutation";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -38,29 +41,37 @@ const CustomButton = styled(Button)(({ theme }) => ({
 
 function CustomCard({
   uuid,
-  title,
-  content,
+  name,
+  address,
+  phone,
+  email,
 }: {
   uuid: string;
-  title: string;
-  content: string;
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
 }) {
-  const { updateCenterData } = useCenterData();
+  const navigate = useNavigate();
+  const { setCenterData, centerData } = useCenterData(); // useCenterData에서 setCenterData를 가져옵니다.
+  console.log("발룬티어 centerData");
+  console.log(centerData);
 
   const handleCardClick = () => {
     console.log(`선택한 보호소의 UUID: ${uuid}`);
-    updateCenterData(uuid);
-    // 여기에 라우팅 코드를 추가합니다.
+    // 선택한 uuid로 centerData의 상태를 업데이트합니다.
+    setCenterData({ uuid, name, address, phone, email });
+    navigate(`/walk`);
   };
   return (
-    <Card sx={{ maxWidth: 3 }} onClick={handleCardClick}>
-      <CardMedia component="img" height="80" image={newLogo} />
+    <Card sx={{ maxWidth: 310 }} onClick={handleCardClick}>
+      <CardMedia component="img" height="60" image={newLogo} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {content}
+          {address}
         </Typography>
       </CardContent>
       <CardActions>{/* Add your button actions here */}</CardActions>
@@ -69,13 +80,6 @@ function CustomCard({
     </Card>
   );
 }
-
-// 1. VolunteerPage에서의 center 의 state를 받는다.
-// 2. 해당 state 에는 보호소 관련 DB 데이터를 받을 수 있다 => 등록된 보호소 개수만큼 mapping
-// 2-1 보호소가 4개를 넘어가면 그 다음 Carousel 에서 보여주기
-// 3. 두가지 선택지 (산책하기, 봉사하기) 중 선택
-// 3-1 산책하기를 누르면 해당 보호소를 선택한 상태 state를 담은채로 WalkPage(산책페이지)로 이동. (Zustand로 상태 관리)
-// 3-2 봉사하기를 누르면 해당 보호소에 직접 연락을 할 수 있는 연락처 or 봉사 관련 게시판에 봉사 내용 신청
 
 function VolunteerPage() {
   // 여기있는 데이터를 DB에서 받아와서 쓸 거임
@@ -113,7 +117,7 @@ function VolunteerPage() {
           mt: 5,
           display: "flex",
           bgcolor: "#FFE8A3",
-          height: "100%",
+          height: "auto",
           width: "60%",
           borderRadius: 5,
         }}
@@ -129,7 +133,7 @@ function VolunteerPage() {
             borderRadius: 5,
           }}
         >
-          <Box sx={{ width: "100%" }} marginY={5} marginLeft={3}>
+          <Box sx={{ width: "100%" }} marginY={3} marginLeft={3}>
             <Grid container rowSpacing={5}>
               {center
                 .slice(
@@ -140,8 +144,10 @@ function VolunteerPage() {
                   <Grid key={centerItem.uuid} item xs={5} md={6}>
                     <CustomCard
                       uuid={centerItem.uuid}
-                      title={centerItem.name || "No Name"}
-                      content={centerItem.address || "No Address"}
+                      name={centerItem.name || "No Name"}
+                      address={centerItem.address || "No Address"}
+                      phone={centerItem.phone || "No Address"}
+                      email={centerItem.email || "No Address"}
                     />
                   </Grid>
                 ))}

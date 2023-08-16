@@ -20,10 +20,6 @@ const CustomButton = styled(Button)(({ theme }) => ({
 }));
 
 function WalkPage() {
-  const [center, setCenter] = useState(["A보호소", "B보호소", "C보호소"]);
-  const [date, setDate] = useState(["7월29일", "7월30일", "7월31일"]);
-  const [time, setTime] = useState(["A보호소", "B보호소", "C보호소"]);
-
   return (
     <>
       <CssBaseline />

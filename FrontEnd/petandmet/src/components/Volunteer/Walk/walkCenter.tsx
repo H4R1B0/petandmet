@@ -8,6 +8,7 @@ import { domain } from "hooks/customQueryClient";
 import axios from "axios";
 import { useCenterStore } from "hooks/Center/CenterMutation";
 import { useCenterData } from "hooks/Center/useCenterData";
+import CenterDataList from "hooks/Center/CenterMutation";
 
 interface CenterData {
   uuid: string;
@@ -18,8 +19,6 @@ interface CenterData {
 }
 
 function WalkCenter() {
-  const [center, setCenter] = useState(["A 보호소", "B 보호소", "C 보호소"]);
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,6 +27,18 @@ function WalkCenter() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [centers, setCenters] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const centersData = await CenterDataList();
+      setCenters(centersData);
+    };
+    fetchData();
+  }, []);
+
+  // setCenters(centers);
 
   const { centerData } = useCenterData();
   const uuid = centerData?.uuid;
@@ -41,7 +52,7 @@ function WalkCenter() {
           `${domain}/center/detail?id=${uuid}`,
           {}
         );
-        setCenterDetail(response.data);
+        setCenterDetail(response.data.response.board);
       } catch (error) {
         console.error("Failed to fetch center details:", error);
       }
@@ -58,13 +69,11 @@ function WalkCenter() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        sx={{ height: "50px" }}
       >
-        <p className="grow">{centerDetail.name}를 에 산책 신청하기</p>
-        <p className="grow">{centerDetail.phone}</p>
-        <p className="grow">{centerDetail.email}</p>
-        <p className="grow">신청하시기 전에 연락을 통해</p>
-        <p className="grow">스케쥴을 확인하시는건 어떨까요?</p>
+        <p className="grow">{centerDetail?.name}에 산책 신청하기</p>
       </Button>
+
       <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
@@ -79,8 +88,10 @@ function WalkCenter() {
           vertical: "top",
           horizontal: "left",
         }}
-      ></Menu>
-      <HouseSidingIcon className="m-3" color="action"></HouseSidingIcon>
+      >
+        {/* {here} */}
+      </Menu>
+      {/* <HouseSidingIcon className="m-3" color="action"></HouseSidingIcon> */}
     </div>
   );
 }
