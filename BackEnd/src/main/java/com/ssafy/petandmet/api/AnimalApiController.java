@@ -102,8 +102,7 @@ public class AnimalApiController {
         try {
             log.debug("File Test : 파일 테스트");
             log.debug(request.toString());
-            log.debug(image);
-            log.debug(image.toString);
+            log.debug(image.toString());
             log.debug("File Test : 파일 테스트 종료");
             animalService.join(image, request);
 
