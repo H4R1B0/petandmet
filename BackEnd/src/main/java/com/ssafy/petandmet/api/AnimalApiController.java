@@ -138,4 +138,16 @@ public class AnimalApiController {
         PageCountResponse response = new PageCountResponse(findPageCount);
         return new Result(true, response, "null");
     }
+
+    @GetMapping("api/v1/animal/detail")
+    @Operation(summary = "동물 상세조회", description = "1마리의 특정 동물만 조회합니다")
+    public Result GetAnimal(@RequestParam String uuid) {
+        try {
+            FindAnimalByIdResponse response = animalService.findOne(uuid);
+
+            return new Result(true, response, "null");
+        } catch (Exception e) {
+            return new Result(false, "null", e.getMessage());
+        }
+    }
 }
