@@ -34,6 +34,8 @@ function Charge() {
   const handleChargeClick = () => {
     const IMP = (window as any).IMP;
     IMP.init("imp02430511");
+    console.log(userUuid);
+    console.log(selectedOption);
 
     IMP.request_pay(
       {
@@ -41,7 +43,7 @@ function Charge() {
         pay_method: "kakaopay",
         merchant_uid: "merchant_" + new Date().getTime(),
         name: "주문명 : 주문명 설정",
-        mileage: selectedMoney,
+        amount: selectedOption,
         buyer_email: "dobrolee26@gmail.com",
         buyer_name: "구매자이름",
         buyer_tel: "010-4604-9647",
@@ -55,7 +57,7 @@ function Charge() {
               `${domain}/mileage/charge`,
               {
                 uuid: userUuid,
-                mileage: selectedMoney,
+                mileage: selectedOption,
               },
               {
                 headers: {
