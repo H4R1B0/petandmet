@@ -9,13 +9,16 @@ export interface RegisterCredential {
   phone: string
   name: string
   role_type: string
+  center_name: string
+  center_address: string
+  center_phone: string
+  center_email: string
 }
 
 const axiosData = async (
   credentials: RegisterCredential
 ): Promise<AxiosResponse> => {
   const response = await axios.post(`${domain}/user/new`, credentials)
-  console.log(response.data)
   return response.data
 }
 export function useRegisterMutation(): UseMutationResult<

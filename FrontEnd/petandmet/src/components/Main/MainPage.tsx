@@ -60,7 +60,7 @@ function MainPage() {
           mt: 10,
           display: "grid",
           bgcolor: "#FFBC5F",
-          height: "100%",
+          // height: "100%",
           borderRadius: 5,
         }}
       >

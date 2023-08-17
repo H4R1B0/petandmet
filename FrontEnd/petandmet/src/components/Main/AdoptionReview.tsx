@@ -15,6 +15,7 @@ function AdoptionReview() {
     justifyContent: "center", // 수평 가운데 정렬
     alignItems: "center", // 수직 가운데 정렬
     marginTop: "20px",
+    marginLeft: "-24px",
   };
   const divStyle = {
     display: "flex",
@@ -22,7 +23,6 @@ function AdoptionReview() {
     margin: "20px 0",
   };
   const h3Style = {
-    marginLeft: "180px",
     fontSize: "24px",
     fontFamily: "SCoreDream",
     color: "#212121",
