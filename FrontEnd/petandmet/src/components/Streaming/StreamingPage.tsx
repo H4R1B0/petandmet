@@ -45,7 +45,7 @@ function StreamingPage() {
       <Container
         sx={{
           my: 5,
-          display: "flex",
+          // display: "flex",
           flexDirection: "column",
           bgcolor: "#ffffff",
           height: "40rem",
