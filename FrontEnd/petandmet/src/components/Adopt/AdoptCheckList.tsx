@@ -69,9 +69,9 @@ function CheckList() {
             </label>
             </Box>
             <Box sx={{ ml: 3, mb : 2, width:'720px', 
-                      textAlign :'start', bgcolor: '#fcfaa7', height: '56px',
+                      textAlign :'start', bgcolor: '#FFD396', height: '56px',
                       pl: 1, justifyContent : 'center', display: 'flex',
-                      flexDirection: 'column'
+                      flexDirection: 'column', borderRadius : 2
                       }}>
               <Typography sx={{fontSize : 20, fontWeight : 'bold'}}>
                 {question}
@@ -86,7 +86,7 @@ function CheckList() {
       {!isAllChecked && <CustomButton sx={{backgroundColor : 'white'}} disabled>입양 시설 알아보기</CustomButton>}
 
       {/* 모든 체크박스가 선택되어 활성화된 버튼 */}
-      {isAllChecked && <CustomButton onClick={() => alert('버튼이 클릭되었습니다!')}>입양 시설 알아보기</CustomButton>}
+      {isAllChecked && <CustomButton onClick={() => window.open('https://www.daejeon.go.kr/ani/AniAdoptionApplicationList.do?menuSeq=124', '_blank')}>입양 시설 알아보기</CustomButton>}
     </>
   );
 }

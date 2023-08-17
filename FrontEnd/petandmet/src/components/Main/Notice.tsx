@@ -30,7 +30,6 @@ function Notice() {
     margin: '20px 0',
   }
   const h3Style = {
-    marginLeft: '180px',
     fontSize: '24px',
     fontFamily: 'SCoreDream',
     color: '#212121',
