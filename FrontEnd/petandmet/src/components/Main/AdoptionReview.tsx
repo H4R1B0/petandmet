@@ -15,6 +15,7 @@ function AdoptionReview() {
     justifyContent: "center", // 수평 가운데 정렬
     alignItems: "center", // 수직 가운데 정렬
     marginTop: "20px",
+    marginLeft: "-24px",
   };
   const divStyle = {
     display: "flex",

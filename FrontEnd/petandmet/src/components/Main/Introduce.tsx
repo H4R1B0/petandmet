@@ -24,7 +24,7 @@ function Introduce() {
 
   return (
     <>
-      <div className="flex justify-between bg-sky-500/50 overflow-hidden h-[600px] pt-[30px] pb-[30px] pl-0 rounded-md mt-[20px] relative">
+      <div className="flex justify-between bg-sky-500/50 overflow-hidden pt-[30px] pb-[30px] pl-0 rounded-md mt-[20px] relative">
         <div className="ml-12 flex flex-col justify-between text-3xl text-left bg-white/50 rounded-3xl px-4 py-2">
           <p className="leading-normal">가족이 되어 줄</p>
           <strong className="leading-normal">사랑스런</strong>
