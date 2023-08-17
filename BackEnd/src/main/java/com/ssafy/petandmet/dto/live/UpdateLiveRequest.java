@@ -18,4 +18,6 @@ public class UpdateLiveRequest {
     private List<Long> centerItemId;
     @JsonProperty("animal_uuid")
     private String animalUuid;
+    @JsonProperty("session_id")
+    private STring sessionId;
 }

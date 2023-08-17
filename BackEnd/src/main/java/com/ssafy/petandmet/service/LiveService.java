@@ -105,6 +105,7 @@ public class LiveService {
             live.setCenterItem(centerItems);
         }
         live.setSessionName(request.getSessionName());
+        live.setSessionId(request.getSessionId());
     }
 
 }
