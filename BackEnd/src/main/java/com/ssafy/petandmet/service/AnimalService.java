@@ -144,7 +144,13 @@ public class AnimalService {
     }
 
     public Page<Animal> findAnimalBySearch(Map<String, String> map, Pageable pageable) {
-        return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), map.get("centerUuid"),pageable);
+        if (map.get("adoptionStatus") == null) {
+            return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), map.get("centerUuid"), null,pageable);
+        }
+        if (map.get("adoptionStatus").equals("POSSIBLE")) {
+            return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), map.get("centerUuid"), AdoptionStatus.POSSIBLE,pageable);
+        }
+        return animalRepository.findAnimalBySearch(map.get("name"), map.get("specie"), map.get("breed"), map.get("centerUuid"), AdoptionStatus.IMPOSSIBLE,pageable);
     }
 
     public Page<Animal> findAll(Pageable pageable) {
