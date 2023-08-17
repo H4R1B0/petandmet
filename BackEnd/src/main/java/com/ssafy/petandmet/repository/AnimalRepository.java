@@ -1,6 +1,7 @@
 package com.ssafy.petandmet.repository;
 
 import com.ssafy.petandmet.domain.Animal;
+import com.ssafy.petandmet.dto.animal.AdoptionStatus;
 import com.ssafy.petandmet.dto.animal.FindAnimalBySearchResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
