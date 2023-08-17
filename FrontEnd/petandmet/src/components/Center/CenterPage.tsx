@@ -1,8 +1,8 @@
 import { Box, Container, Grid, Button } from '@mui/material'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import CenterAnimalList from 'components/Center/CenterAnimalList'
-import CenterItemList from './CenterItemList'
+import CenterItemList from 'components/Center/CenterItemList'
 import {
   useAnimalSearch,
   CenterUuidCredential,
@@ -13,31 +13,7 @@ import { useCenterDetail } from 'hooks/Center/useCenterDetail'
 import { useCenterItemList } from 'hooks/Item/useItemList'
 import { GetCenterWalk } from 'hooks/Center/useCenterWalk'
 import { CenterStore } from 'hooks/Center/CenterDetailStore'
-import CenterWalk from './CenterWalk'
-interface AnimalsData {
-  name: string
-  age: number
-  specie: string
-  breed: string
-  animal_uuid: string
-  animal_photo_url: string
-  center_uuid: string
-}
-
-interface Center {
-  name: string | null
-  address: string | null
-  email: string | null
-  phone: string | null
-}
-
-interface ItemsData {
-  item_name: string
-  item_url: string
-  item_target_price: number
-  center_item_id: number
-  center_uuid: string
-}
+import CenterWalk from 'components/Center/CenterWalk'
 
 function CenterPage() {
   const navigate = useNavigate()
