@@ -5,14 +5,18 @@ import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MainLive from "components/Live/LiveList";
 import AnimalList from "components/Animal/AnimalList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAnimalList, Animal } from 'hooks/Animal/useAnimalList'
+import Introduce from "./Introduce";
+import AdoptionReview from "./AdoptionReview";
+import Notice from "./Notice"
 
 interface CustomButtonProps {
   isActive: boolean;
 }
 
-const btn = ["라이브", "보호동물", "봉사"];
+const btn = ["라이브", "보호동물"];
 const CustomButton = styled(Button)(({ isActive }: CustomButtonProps) => ({
   backgroundColor: isActive ? "#FF6F26" : "#FFA629",
   color: "white",
@@ -45,14 +49,18 @@ function MainPage() {
   };
 
   return (
-    <>
+    <div className="flex justify-center">
+    <div className="w-[60%] flex flex-col justify-center">
       <CssBaseline />
+      <Introduce></Introduce>
+      <Notice></Notice>
+      <AdoptionReview></AdoptionReview>
       <Container
         sx={{
           mt: 10,
           display: "grid",
           bgcolor: "#FFBC5F",
-          height: "100%",
+          // height: "100%",
           borderRadius: 5,
         }}
       >
@@ -88,7 +96,9 @@ function MainPage() {
           {btn[channel]} 더보기
         </CustomButton>
       </Container>
-    </>
+
+    </div>
+    </div>
   );
 }
 
