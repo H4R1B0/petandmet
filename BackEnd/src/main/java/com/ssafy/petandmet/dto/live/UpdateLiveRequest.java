@@ -19,5 +19,5 @@ public class UpdateLiveRequest {
     @JsonProperty("animal_uuid")
     private String animalUuid;
     @JsonProperty("session_id")
-    private STring sessionId;
+    private String sessionId;
 }
