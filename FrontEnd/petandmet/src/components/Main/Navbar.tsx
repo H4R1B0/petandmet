@@ -161,7 +161,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            <img alt="logo" src={logo} style={{ width: 100 }} />
+            <img alt="logo" src={logo} style={{ width: 200 }} />
           </Typography>
           <Box sx={{ flexGrow: 1 }}></Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
