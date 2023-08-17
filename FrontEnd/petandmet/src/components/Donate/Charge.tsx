@@ -45,7 +45,7 @@ const KakaoCharge: React.FC = () => {
               `${domain}/mileage/charge`,
               {
                 uuid: userUuid,
-                mileage: selectedMoney,
+                mileage: selectedOption,
               },
               {
                 headers: {
