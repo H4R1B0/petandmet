@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   RegisterCredential,
   useRegisterMutation,
 } from 'hooks/User/useRegisterMutation'
+import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
 function Register() {
   const [id, setId] = useState<string>('')
@@ -10,21 +12,83 @@ function Register() {
   const [email, setEmail] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
   const [name, setName] = useState<string>('')
-  const [role_type, setRoleType] = useState<string>('USER')
+  const [roleType, setRoleType] = useState<string>('USER')
+  const [centerName, setCenterName] = useState<string>('')
+  const [centerAddress, setCenterAddress] = useState<string>('')
+  const [centerPhone, setCenterPhone] = useState<string>('')
+  const [centerEmail, setCenterEmail] = useState<string>('')
 
   const register = useRegisterMutation()
+  const navigate = useNavigate()
+
+  const CheckIsEmpty = (): boolean => {
+    if (id.length >= 30) {
+      toast.info('아이디가 입력 범위를 벗어났습니다')
+      return false
+    }
+    if (id.length === 0) {
+      toast.error('아이디가 비어있습니다.')
+      return false
+    }
+    if (password.length === 0) {
+      toast.error('비밀번호가 비어있습니다.')
+      return false
+    }
+    if (email.length === 0) {
+      toast.error('이메일이 비어있습니다.')
+      return false
+    }
+    if (phone.length === 0) {
+      toast.error('전화번호가 비어있습니다.')
+      return false
+    }
+    if (name.length === 0) {
+      toast.error('이름이 비어있습니다.')
+      return false
+    }
+
+    if (roleType === 'CENTER') {
+      if (centerPhone.length === 0) {
+        toast.error('센터 번호가 비어있습니다.')
+        return false
+      }
+      if (centerName.length === 0) {
+        toast.error('센터 이름이 비어있습니다.')
+        return false
+      }
+      if (centerAddress.length === 0) {
+        toast.error('센터 주소가 비어있습니다.')
+        return false
+      }
+      if (centerEmail.length === 0) {
+        toast.error('센터 이메일이 비어있습니다.')
+        return false
+      }
+    }
+
+    return true
+  }
 
   const handleRegister = () => {
-    const credentials: RegisterCredential = {
-      id,
-      password,
-      email,
-      phone,
-      name,
-      role_type,
-    }
-    console.log(credentials)
-    register.mutate(credentials)
+    try {
+      if (CheckIsEmpty()) {
+        return
+      }
+      const credentials: RegisterCredential = {
+        id,
+        password,
+        email,
+        phone,
+        name,
+        role_type: roleType,
+        center_name: centerName,
+        center_address: centerAddress,
+        center_phone: centerPhone,
+        center_email: centerEmail,
+      }
+      register.mutateAsync(credentials)
+      navigate('/')
+    } catch (error) {}
   }
   const handleRole = (role: string) => {
     setRoleType(role)
@@ -39,7 +103,7 @@ function Register() {
           <div className="flex flex-row justify-evenly my-4">
             <div
               className={`${
-                role_type === 'USER' ? 'bg-amber-300' : 'bg-gray-300'
+                roleType === 'USER' ? 'bg-amber-300' : 'bg-gray-300'
               }  hover:bg-amber-400 cursor-pointer flex w-full items-center justify-center select-none text-lg rounded-xl py-4 mr-4`}
               onClick={() => handleRole('USER')}
             >
@@ -47,7 +111,7 @@ function Register() {
             </div>
             <div
               className={`${
-                role_type === 'CENTER' ? 'bg-amber-300' : 'bg-gray-300'
+                roleType === 'CENTER' ? 'bg-amber-300' : 'bg-gray-300'
               } hover:bg-amber-400 cursor-pointer w-full flex items-center justify-center select-none  text-lg rounded-xl py-2`}
               onClick={() => handleRole('CENTER')}
             >
@@ -103,6 +167,50 @@ function Register() {
               focus:bg-white focus:outline-none"
             />
           </div>
+          {roleType === 'CENTER' ? (
+            <>
+              <div className="flex flex-row my-4">
+                <input
+                  type="text"
+                  value={centerName}
+                  onChange={e => setCenterName(e.target.value)}
+                  placeholder="센터 이름"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                />
+              </div>
+              <div className="flex flex-row my-4">
+                <input
+                  type="text"
+                  value={centerAddress}
+                  onChange={e => setCenterAddress(e.target.value)}
+                  placeholder="센터 주소"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                />
+              </div>
+              <div className="flex flex-row my-4">
+                <input
+                  type="text"
+                  value={centerPhone}
+                  onChange={e => setCenterPhone(e.target.value)}
+                  placeholder="센터 번호"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                />
+              </div>
+              <div className="flex flex-row my-4">
+                <input
+                  type="text"
+                  value={centerEmail}
+                  onChange={e => setCenterEmail(e.target.value)}
+                  placeholder="센터 이메일"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                />
+              </div>
+            </>
+          ) : null}
 
           <button
             type="submit"
