@@ -1,7 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import { Button } from '@mui/material'
+import { Button, StyledComponentProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import MainLive from 'components/Live/LiveList'
 import AnimalList from 'components/Animal/AnimalList'
@@ -12,7 +12,7 @@ import Introduce from './Introduce'
 import AdoptionReview from './AdoptionReview'
 import Notice from './Notice'
 
-interface CustomButtonProps {
+interface CustomButtonProps extends StyledComponentProps {
   isActive: boolean
 }
 
