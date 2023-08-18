@@ -10,8 +10,6 @@ function AnimalList() {
   const { data, refetch } = useAnimalList()
   const location = useLocation()
   const showPagination = location.state as Boolean
-  // console.log("애니멀 리스트 data?.response");
-  // console.log(data?.response);
   useEffect(() => {
     refetch()
   }, [])
@@ -38,34 +36,24 @@ function AnimalList() {
 
   return (
     <>
-      <Container>
-        <Box
-          sx={{
-            mt: 1,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)', // 이 부분을 추가하여 카드를 자동으로 정렬합니다.
-            gap: '8px', // 카드 간 간격 설정
-            height: '95%',
-          }}
-        >
-          {animalToShow !== undefined &&
-            animalToShow.slice(startIndex, endIndex).map(animal => {
-              return <CardInfo key={animal.animal_uuid} animal={animal} />
-            })}
-        </Box>
-        <Box>
-          {showPagination && (
-            <Pagination
-              count={totalPages}
-              variant="outlined"
-              shape="rounded"
-              page={currentPage + 1}
-              onChange={(event, page) => handlePageChange(event, page - 1)}
-              sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}
-            />
-          )}
-        </Box>
-      </Container>
+      <div className="grid grid-cols-4 gap-4 my-3">
+        {animalToShow !== undefined &&
+          animalToShow.slice(startIndex, endIndex).map(animal => {
+            return <CardInfo key={animal.animal_uuid} animal={animal} />
+          })}
+      </div>
+      <Box>
+        {showPagination && (
+          <Pagination
+            count={totalPages}
+            variant="outlined"
+            shape="rounded"
+            page={currentPage + 1}
+            onChange={(event, page) => handlePageChange(event, page - 1)}
+            sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}
+          />
+        )}
+      </Box>
     </>
   )
 }

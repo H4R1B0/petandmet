@@ -31,19 +31,11 @@ function LiveList({ num = 16 }: LiveListProps) {
 
   return (
     <>
-      <Box
-        sx={{
-          mt: 1,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)', // 이 부분을 추가하여 카드를 자동으로 정렬합니다.
-          gap: '8px', // 카드 간 간격 설정
-          height: '95%',
-        }}
-      >
+      <div className="grid grid-cols-4 gap-4 my-3">
         {livesToShow.map((live: any, idx: number) => (
           <CardInfoLive key={idx} live={live} />
         ))}
-      </Box>
+      </div>
     </>
   )
 }

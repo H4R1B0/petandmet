@@ -30,7 +30,7 @@ function CardInfo({ animal }: CardInfoProps) {
   }
 
   return (
-    <Card sx={{ maxWidth: 250, borderRadius: 3 }} onClick={handleCardClick}>
+    <Card sx={{ width: '100%', borderRadius: 3 }} onClick={handleCardClick}>
       {animal.animal_photo_url &&
       typeof animal.animal_photo_url === 'string' ? (
         <CardMedia
@@ -38,6 +38,8 @@ function CardInfo({ animal }: CardInfoProps) {
           image={animal.animal_photo_url}
           style={{ width: '100%' }}
           alt={logo}
+          sx={{ borderRadius: 3 }}
+          className="shadow-xl"
         />
       ) : (
         <CardMedia
@@ -45,12 +47,13 @@ function CardInfo({ animal }: CardInfoProps) {
           image={logo}
           style={{ width: '100%' }}
           alt={logo}
+          sx={{ borderRadius: 3 }}
         />
       )}
       <CardContent sx={{ padding: '0 !important', textAlign: 'left' }}>
-        <div className="mt-3 text-md">
+        <div className="text-md p-4">
           {AnimalInfo.map((info, idx) => (
-            <div key={idx}>
+            <div key={idx} className="">
               <span>{info} : </span>
               <span>
                 {info === '이름' && animal.name}

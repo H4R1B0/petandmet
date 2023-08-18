@@ -65,7 +65,7 @@ function Notice() {
 
   return (
     <>
-      <div style={divStyle}>
+      <div style={divStyle} className="my-10">
         <h3 style={h3Style}>입양가능</h3>
         <p style={pStyle}>#새로운 가족을 기다리고 있어요</p>
       </div>

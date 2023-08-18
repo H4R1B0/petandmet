@@ -101,12 +101,13 @@ function CardLiveInfo({ live }: CardLiveInfoProps) {
             <img
               src={animal.photo_url}
               alt=""
-              className="rounded-t-lg h-full"
+              className="rounded-xl h-full shadow-xl"
             />
           ) : (
             <></>
           )}
-
+        </div>
+        <div className="text-md p-4">
           {AnimalInfo.map((info, idx) => (
             <div key={idx}>
               <span> {info} : </span>
@@ -119,10 +120,10 @@ function CardLiveInfo({ live }: CardLiveInfoProps) {
               <br />
             </div>
           ))}
-        </div>
-        <IconButton aria-label="add to favorites">
+          {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-        </IconButton>
+        </IconButton> */}
+        </div>
       </CardContent>
       {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
