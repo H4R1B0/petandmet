@@ -33,6 +33,8 @@ const NavButton = styled(Button)(({ theme }) => ({
   my: 2,
   color: 'white',
   display: 'block',
+  fontSize: '1.5rem', // 텍스트 사이즈를 더 크게
+  fontWeight: 'bold',
 }))
 
 function Navbar() {
