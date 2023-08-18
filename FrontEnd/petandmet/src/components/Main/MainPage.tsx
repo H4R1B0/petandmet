@@ -56,15 +56,7 @@ function MainPage() {
         <Introduce></Introduce>
         <Notice></Notice>
         {/* <AdoptionReview></AdoptionReview> */}
-        <Container
-          sx={{
-            mt: 10,
-            display: 'grid',
-            bgcolor: '#FFBC5F',
-            // height: "100%",
-            borderRadius: 5,
-          }}
-        >
+        <div className="rounded-xl shadow-xl mt-10 py-3 px-6 bg-amber-300 flex flex-col justify-center">
           <Box
             sx={{
               display: 'flex',
@@ -82,7 +74,7 @@ function MainPage() {
             ))}
           </Box>
 
-          <Box>{channel === 1 ? <AnimalList /> : <MainLive />}</Box>
+          {channel === 1 ? <AnimalList /> : <MainLive />}
 
           <CustomButton
             isActive={isActive[channel]}
@@ -96,7 +88,7 @@ function MainPage() {
           >
             {btn[channel]} 더보기
           </CustomButton>
-        </Container>
+        </div>
       </div>
     </div>
   )

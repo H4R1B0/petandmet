@@ -157,7 +157,15 @@ function Navbar() {
   }
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#FFA629' }}>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: '#FFA629',
+        height: '80px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -177,9 +185,9 @@ function Navbar() {
           >
             <img alt="logo" src={Final} style={{ width: 200 }} />
           </Typography>
-          <Box sx={{ flexGrow: 1 }}></Box>
+          {/* <Box sx={{ flexGrow: 1 }}></Box> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <Box sx={{ flexGrow: 1 }}></Box>
+            {/* <Box sx={{ flexGrow: 1 }}></Box> */}
             <Box sx={{ flexGrow: 1 }}>
               <IconButton
                 size="large"
@@ -207,7 +215,9 @@ function Navbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                // display: { xs: 'block', md: 'none' },
+                display: 'flex',
+                gap: '4rem',
               }}
             >
               <MenuItem onClick={handleOpenUserMenu}>
