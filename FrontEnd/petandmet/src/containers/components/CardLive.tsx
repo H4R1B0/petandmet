@@ -94,7 +94,7 @@ function CardLiveInfo({ live }: CardLiveInfoProps) {
   }
 
   return (
-    <Card sx={{ maxWidth: 250, borderRadius: 5 }} onClick={handleCardClick}>
+    <Card sx={{ width: '100%', borderRadius: 3 }} onClick={handleCardClick}>
       <CardContent sx={{ padding: '0 !important', textAlign: 'left' }}>
         <div className="">
           {animal ? (
