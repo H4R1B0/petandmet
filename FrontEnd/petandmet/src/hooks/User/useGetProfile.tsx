@@ -5,16 +5,11 @@ interface Result {
   response: Profile
 }
 
-export function useProfileQuery(token: string): UseQueryResult<Result> {
+export function useProfileQuery(uuid: string): UseQueryResult<Result> {
   const profileStore = useProfile()
   const axiosProfile = async (): Promise<Result> => {
     try {
-      const config = {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-      const response = await customAxios.get('/user', config)
+      const response = await customAxios.get(`/user/detail?uuid=${uuid}`)
       return response.data
     } catch (error) {
       console.log(error)
@@ -27,7 +22,7 @@ export function useProfileQuery(token: string): UseQueryResult<Result> {
         profileStore.setAttendance(data.response.attendance)
         profileStore.setName(data.response.name)
         profileStore.setEmail(data.response.email)
-        profileStore.setPhone(data.response.phone)
+        profileStore.setPhone(data.response.phone_number)
         profileStore.setDonate_grade(data.response.donate_grade)
         profileStore.setWalk_grade(data.response.walk_grade)
       }

@@ -25,17 +25,15 @@ function WalkUpdate() {
   const location = useLocation()
   const Data = location.state as WalkDetail
   const [changeStatus, setChangeStatus] = useState(Data.status)
-  const { data: profileData, refetch: refetchProfile } = useProfileQuery(
-    Data.user_uuid
-  )
+  // const { data: profileData, refetch: refetchProfile } = useProfileQuery(
+  //   Data.user_uuid
+  // )
   const userProfile = useProfile()
-  const { data: animalDetailData, refetch: refetchAnimalData } =
-    useAnimalDetail(Data.animal_uuid)
+  // const { data: animalDetailData, refetch: refetchAnimalData } =
+  //   useAnimalDetail(Data.animal_uuid)
   const animalDetail = AnimalSearchStore()
-  console.log(profileData)
-  console.log(animalDetailData)
+  // console.log(profileData)
   console.log(userProfile)
-  console.log(animalDetail)
 
   const goToBack = () => {
     navigate(-1)
@@ -94,7 +92,7 @@ function WalkUpdate() {
                 id="outlined-basic"
                 label="신청자 전화번호"
                 variant="outlined"
-                defaultValue={userProfile.phone}
+                defaultValue={userProfile.phone_number}
                 disabled
               />
               <TextField

@@ -7,8 +7,8 @@ export interface Profile {
   setName: (name: string) => void
   email: string
   setEmail: (email: string) => void
-  phone: string
-  setPhone: (phone: string) => void
+  phone_number: string
+  setPhone: (phone_number: string) => void
   donate_grade: string
   setDonate_grade: (donate_grade: string) => void
   walk_grade: string
@@ -22,8 +22,8 @@ export const useProfile = create<Profile>(set => ({
   setName: name => set({ name }),
   email: '',
   setEmail: email => set({ email }),
-  phone: '',
-  setPhone: phone => set({ phone }),
+  phone_number: '',
+  setPhone: phone_number => set({ phone_number }),
   donate_grade: '',
   setDonate_grade: donate_grade => set({ donate_grade }),
   walk_grade: '',
