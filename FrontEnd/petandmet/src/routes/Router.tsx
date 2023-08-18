@@ -19,6 +19,8 @@ import Live from 'components/Live/OpenVidu'
 import Board from 'routes/Board'
 import Center from 'routes/Center'
 import Animal from 'routes/Animal'
+import Footer from 'components/Main/Footer'
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -44,6 +46,7 @@ const App = () => {
         <Route path="/admin/*" element={<Center />} />
         <Route path="/animal/*" element={<Animal />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
