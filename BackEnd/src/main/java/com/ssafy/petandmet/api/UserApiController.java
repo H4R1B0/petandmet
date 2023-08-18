@@ -1,30 +1,10 @@
 package com.ssafy.petandmet.api;
 
 import com.ssafy.petandmet.domain.Point;
+import com.ssafy.petandmet.domain.User;
 import com.ssafy.petandmet.dto.animal.InterestAnimal;
-import com.ssafy.petandmet.dto.user.AnimalFriendlinessRequest;
-import com.ssafy.petandmet.dto.user.AnimalFrindlinessResponse;
-import com.ssafy.petandmet.dto.user.CheckEmailAuthRequest;
-import com.ssafy.petandmet.dto.user.CreateUserRequest;
-import com.ssafy.petandmet.dto.user.FindIdRequest;
-import com.ssafy.petandmet.dto.user.IdCheckRequest;
-import com.ssafy.petandmet.dto.user.InterestAnimalRequest;
-import com.ssafy.petandmet.dto.user.InterestAnimalResponse;
-import com.ssafy.petandmet.dto.user.LoginUserRequest;
-import com.ssafy.petandmet.dto.user.MileageResponse;
-import com.ssafy.petandmet.dto.user.ModifyInfoRequest;
-import com.ssafy.petandmet.dto.user.PasswordResetRequest;
-import com.ssafy.petandmet.dto.user.Result;
+import com.ssafy.petandmet.dto.user.*;
 import com.ssafy.petandmet.dto.jwt.Token;
-import com.ssafy.petandmet.dto.user.SendEmailAuthRequest;
-import com.ssafy.petandmet.dto.user.UserIdCheckResponse;
-import com.ssafy.petandmet.dto.user.UserInfoResponse;
-import com.ssafy.petandmet.dto.user.UserLoginResponse;
-import com.ssafy.petandmet.dto.user.UserMileageLogResponse;
-import com.ssafy.petandmet.dto.user.UserMileageResponse;
-import com.ssafy.petandmet.dto.user.UserProfileUploadRequest;
-import com.ssafy.petandmet.dto.user.UserRefreshResponse;
-import com.ssafy.petandmet.dto.user.UserResponse;
 import com.ssafy.petandmet.service.UserService;
 import com.ssafy.petandmet.service.S3Service;
 import com.ssafy.petandmet.util.SecurityUtil;
@@ -60,6 +40,26 @@ public class UserApiController {
     private final UserService userService;
     private final S3Service s3Service;
     private final int INTEREST_ANIMAL_COUNT = 8;
+
+
+    /**
+     * 유저 상세조회
+     *
+     * @param request 사용자 UUID
+     * @return 사용자 마일리지 조회
+     */
+    @GetMapping("/{uuid}")
+    @Operation(summary = "사용자 상세 조회", description = "현재 사용자의 정보를 조회합니다.")
+    public Result findUserDetail(@PathVariable String uuid) {
+        try {
+            User findUser = userService.findUserDetail(uuid);
+
+            UserDetailResponse response = new UserDetailResponse(findUser);
+            return new Result(true, response, null);
+        } catch (Exception e) {
+            return new Result(false, "null", null);
+        }
+    }
 
     /**
      * 마일리지 조회

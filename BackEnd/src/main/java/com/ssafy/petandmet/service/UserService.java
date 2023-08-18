@@ -510,4 +510,11 @@ public class UserService {
     public Optional<String> getCenterUuid(String userUuid) {
         return userRepository.getCenterUuid(userUuid);
     }
+
+    public User findUserDetail(String uuid) {
+        User user = userRepository.findUserByUserId(uuid).orElseThrow(() -> {
+            throw new NullPointerException();
+        });
+        return user;
+    }
 }
