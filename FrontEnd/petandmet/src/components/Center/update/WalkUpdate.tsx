@@ -85,13 +85,6 @@ function WalkUpdate() {
               />
               <TextField
                 id="outlined-basic"
-                label="동물 이름"
-                variant="outlined"
-                defaultValue={Data.animal_uuid}
-                disabled
-              />
-              <TextField
-                id="outlined-basic"
                 label="신청자"
                 variant="outlined"
                 defaultValue={userProfile.name}
