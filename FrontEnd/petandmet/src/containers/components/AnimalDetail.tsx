@@ -12,6 +12,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { GetAnimal, DeleteAnimal } from 'hooks/Animal/AnimalData'
 import { useAccessToken } from 'hooks/useAccessToken'
 import { Animal } from 'hooks/Animal/AnimalListStore'
+import { useCenterDetail } from 'hooks/Center/useCenterDetail'
+import { CenterStore } from 'hooks/Center/CenterDetailStore'
 
 export default function AnimalDetail() {
   const [animalDetail, setAnimalDetail] = useState<Animal>({
@@ -38,6 +40,9 @@ export default function AnimalDetail() {
   if (animal_uuid) {
     uuid = animal_uuid
   }
+  const { data: centerDetailData, refetch: refetchCenterDetail } =
+    useCenterDetail(animalDetail.centerUuid)
+  const centerDetail = CenterStore()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,6 +76,15 @@ export default function AnimalDetail() {
 
     fetchData()
   }, [])
+
+  useEffect(() => {
+    if (
+      animalDetail.centerUuid !== '' &&
+      animalDetail.centerUuid !== undefined
+    ) {
+      refetchCenterDetail()
+    }
+  }, [animalDetail.centerUuid])
 
   const goToBack = () => {
     navigate(-1)
@@ -207,7 +221,7 @@ export default function AnimalDetail() {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  value={animalDetail?.centerUuid}
+                  value={centerDetail?.centerData?.name}
                 />
               </Box>
             </Grid>

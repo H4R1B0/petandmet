@@ -4,13 +4,14 @@ import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import logo from 'images/logo.png'
 import { useNavigate } from 'react-router-dom'
+
 interface Animal {
-  animal_uuid: string | null,
-  animal_photo_url: string | null,
-  name: string | null,
-  age: number | null,
-  specie: string | null,
-  breed: string | null,
+  animal_uuid: string
+  animal_photo_url: string | null
+  name: string | null
+  age: number | null
+  specie: string | null
+  breed: string | null
 }
 
 interface CardInfoProps {
@@ -20,7 +21,6 @@ interface CardInfoProps {
 const AnimalInfo = ['이름', '나이', '종류', '품종']
 
 function CardInfo({ animal }: CardInfoProps) {
-
   const navigate = useNavigate()
   const handleCardClick = () => {
     if (animal.animal_uuid) {
