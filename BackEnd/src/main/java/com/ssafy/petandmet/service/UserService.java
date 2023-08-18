@@ -512,7 +512,7 @@ public class UserService {
     }
 
     public User findUserDetail(String uuid) {
-        User user = userRepository.findUserByUserId(uuid).orElseThrow(() -> {
+        User user = userRepository.findById(uuid).orElseThrow(() -> {
             throw new NullPointerException();
         });
         return user;
