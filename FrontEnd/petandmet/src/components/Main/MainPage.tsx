@@ -1,105 +1,104 @@
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import { Button } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import MainLive from "components/Live/LiveList";
-import AnimalList from "components/Animal/AnimalList";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import CssBaseline from '@mui/material/CssBaseline'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import { Button } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import MainLive from 'components/Live/LiveList'
+import AnimalList from 'components/Animal/AnimalList'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAnimalList, Animal } from 'hooks/Animal/useAnimalList'
-import Introduce from "./Introduce";
-import AdoptionReview from "./AdoptionReview";
-import Notice from "./Notice"
+import Introduce from './Introduce'
+import AdoptionReview from './AdoptionReview'
+import Notice from './Notice'
 
 interface CustomButtonProps {
-  isActive: boolean;
+  isActive: boolean
 }
 
-const btn = ["라이브", "보호동물"];
+const btn = ['라이브', '보호동물']
 const CustomButton = styled(Button)(({ isActive }: CustomButtonProps) => ({
-  backgroundColor: isActive ? "#FF6F26" : "#FFA629",
-  color: "white",
-  padding: "10px 20px",
-  borderRadius: "5px",
-  boxShadow: "none",
-  "&:hover": {
-    backgroundColor: "#FF6F26",
+  backgroundColor: isActive ? '#FF6F26' : '#FFA629',
+  color: 'white',
+  padding: '10px 20px',
+  borderRadius: '5px',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#FF6F26',
   },
-  margin: "5px",
-}));
+  margin: '5px',
+}))
 
 function MainPage() {
-  const [channel, setChannel] = useState(0);
-  const [isActive, setIsActive] = useState([true, false, false]);
-  let navigate = useNavigate();
+  const [channel, setChannel] = useState(0)
+  const [isActive, setIsActive] = useState([true, false, false])
+  let navigate = useNavigate()
   const goToLiveList = () => {
-    navigate("/livelist");
-  };
+    navigate('/livelist')
+  }
   const goToAnimalList = () => {
-    navigate("/animallist");
-  };
+    navigate('/animallist')
+  }
   const goToVolunteer = () => {
-    navigate("/volunteer");
-  };
+    navigate('/volunteer')
+  }
   const handleButtonClick = (idx: number) => {
-    setChannel(idx);
-    const newIsActive = isActive.map((_, i) => i === idx);
-    setIsActive(newIsActive);
-  };
+    setChannel(idx)
+    const newIsActive = isActive.map((_, i) => i === idx)
+    setIsActive(newIsActive)
+  }
 
   return (
     <div className="flex justify-center">
-    <div className="w-[60%] flex flex-col justify-center">
-      <CssBaseline />
-      <Introduce></Introduce>
-      <Notice></Notice>
-      <AdoptionReview></AdoptionReview>
-      <Container
-        sx={{
-          mt: 10,
-          display: "grid",
-          bgcolor: "#FFBC5F",
-          // height: "100%",
-          borderRadius: 5,
-        }}
-      >
-        <Box
+      <div className="w-[60%] flex flex-col justify-center">
+        <CssBaseline />
+        <Introduce></Introduce>
+        <Notice></Notice>
+        {/* <AdoptionReview></AdoptionReview> */}
+        <Container
           sx={{
-            display: "flex",
-            padding: "0 !important 16px",
+            mt: 10,
+            display: 'grid',
+            bgcolor: '#FFBC5F',
+            // height: "100%",
+            borderRadius: 5,
           }}
         >
-          {btn.map((b, idx) => (
-            <CustomButton
-              key={idx}
-              isActive={isActive[idx]}
-              onClick={() => handleButtonClick(idx)}
-            >
-              {b}
-            </CustomButton>
-          ))}
-        </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              padding: '0 !important 16px',
+            }}
+          >
+            {btn.map((b, idx) => (
+              <CustomButton
+                key={idx}
+                isActive={isActive[idx]}
+                onClick={() => handleButtonClick(idx)}
+              >
+                {b}
+              </CustomButton>
+            ))}
+          </Box>
 
-        <Box>{channel === 1 ? <AnimalList num={8} /> : <MainLive />}</Box>
+          <Box>{channel === 1 ? <AnimalList num={8} /> : <MainLive />}</Box>
 
-        <CustomButton
-          isActive={isActive[channel]}
-          onClick={
-            channel === 1
-              ? goToAnimalList
-              : channel === 2
-              ? goToVolunteer
-              : goToLiveList
-          }
-        >
-          {btn[channel]} 더보기
-        </CustomButton>
-      </Container>
-
+          <CustomButton
+            isActive={isActive[channel]}
+            onClick={
+              channel === 1
+                ? goToAnimalList
+                : channel === 2
+                ? goToVolunteer
+                : goToLiveList
+            }
+          >
+            {btn[channel]} 더보기
+          </CustomButton>
+        </Container>
+      </div>
     </div>
-    </div>
-  );
+  )
 }
 
-export default MainPage;
+export default MainPage
