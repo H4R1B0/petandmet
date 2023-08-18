@@ -117,7 +117,7 @@ function Navbar() {
     if (centerUuid === null) {
       navigate('/mypage')
     } else {
-      navigate('/admin', { state: centerUuid })
+      navigate('/admin')
     }
     handleCloseNavMenu()
   }
@@ -155,6 +155,9 @@ function Navbar() {
   const handleCloseCharge = () => {
     setAnchorElCharge(null)
   }
+  const handleHome = () => {
+    navigate('/')
+  }
 
   return (
     <AppBar
@@ -172,7 +175,8 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={handleHome}
+            className="cursor-pointer"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'flex' },
@@ -229,14 +233,28 @@ function Navbar() {
               <MenuItem onClick={handleOpenCharge}>
                 <Typography textAlign="center">{pages[2]}</Typography>
               </MenuItem>
-              <MenuItem onClick={accessToken ? logOut : goToLogin}>
+              <MenuItem
+                onClick={
+                  userUuid !== undefined && userUuid !== '' ? logOut : goToLogin
+                }
+              >
                 <Typography textAlign="center">
-                  {accessToken ? pages[5] : pages[3]}
+                  {userUuid !== undefined && userUuid !== ''
+                    ? pages[5]
+                    : pages[3]}
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={accessToken ? goToMyPage : goToSignUP}>
+              <MenuItem
+                onClick={
+                  userUuid !== undefined && userUuid !== ''
+                    ? goToMyPage
+                    : goToSignUP
+                }
+              >
                 <Typography textAlign="center">
-                  {accessToken ? pages[6] : pages[4]}
+                  {userUuid !== undefined && userUuid !== ''
+                    ? pages[6]
+                    : pages[4]}
                 </Typography>
               </MenuItem>
             </Menu>
@@ -249,11 +267,21 @@ function Navbar() {
             <NavButton onClick={handleOpenUserMenu}>{pages[0]}</NavButton>
             <NavButton onClick={handleOpenNotify}>{pages[1]}</NavButton>
             <NavButton onClick={handleOpenCharge}>{pages[2]}</NavButton>
-            <NavButton onClick={accessToken ? logOut : goToLogin}>
-              {accessToken ? pages[5] : pages[3]}
+            <NavButton
+              onClick={
+                userUuid !== undefined && userUuid !== '' ? logOut : goToLogin
+              }
+            >
+              {userUuid !== undefined && userUuid !== '' ? pages[5] : pages[3]}
             </NavButton>
-            <NavButton onClick={accessToken ? goToMyPage : goToSignUP}>
-              {accessToken ? pages[6] : pages[4]}
+            <NavButton
+              onClick={
+                userUuid !== undefined && userUuid !== ''
+                  ? goToMyPage
+                  : goToSignUP
+              }
+            >
+              {userUuid !== undefined && userUuid !== '' ? pages[6] : pages[4]}
             </NavButton>
           </Box>
 
