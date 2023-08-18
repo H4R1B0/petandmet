@@ -48,9 +48,9 @@ public class UserApiController {
      * @param request 사용자 UUID
      * @return 사용자 마일리지 조회
      */
-    @GetMapping("/{uuid}")
+    @GetMapping("/detail")
     @Operation(summary = "사용자 상세 조회", description = "현재 사용자의 정보를 조회합니다.")
-    public Result findUserDetail(@PathVariable String uuid) {
+    public Result findUserDetail(@RequestParam String uuid) {
         try {
             User findUser = userService.findUserDetail(uuid);
 
