@@ -1,4 +1,3 @@
-import { String } from 'lodash'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 

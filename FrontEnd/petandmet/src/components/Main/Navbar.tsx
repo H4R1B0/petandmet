@@ -13,6 +13,7 @@ import Final from 'images/final.svg'
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { styled } from '@mui/material/styles'
+import { UserLogOut } from 'hooks/User/useLogOut'
 
 import { useAccessToken } from 'hooks/useAccessToken'
 const pages = [
@@ -35,16 +36,27 @@ const NavButton = styled(Button)(({ theme }) => ({
 }))
 
 function Navbar() {
+  const logout = UserLogOut()
   let navigate = useNavigate()
   const [cookie, setCookie, removeCookie] = useCookies(['access_token'])
-  const { accessToken, centerUuid, userUuid, setAccessToken } = useAccessToken()
+  const {
+    accessToken,
+    centerUuid,
+    userUuid,
+    setAccessToken,
+    setCenterUuid,
+    setUserUuid,
+  } = useAccessToken()
 
   const logOut = () => {
     removeCookie('access_token')
     localStorage.clear()
     setAccessToken('')
+    setCenterUuid('')
+    setUserUuid('')
     navigate('/login')
     handleCloseNavMenu()
+    logout.mutate()
   }
   const goToLogin = () => {
     navigate('/login')
@@ -197,7 +209,7 @@ function Navbar() {
               }}
             >
               <MenuItem onClick={handleOpenUserMenu}>
-                <Typography textAlign="center" >{pages[0]}</Typography>
+                <Typography textAlign="center">{pages[0]}</Typography>
               </MenuItem>
               <MenuItem onClick={handleOpenNotify}>
                 <Typography textAlign="center">{pages[1]}</Typography>
