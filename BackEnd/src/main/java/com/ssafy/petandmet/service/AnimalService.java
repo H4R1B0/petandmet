@@ -1,5 +1,6 @@
 package com.ssafy.petandmet.service;
 
+import com.ssafy.petandmet.dao.AnimalDao;
 import com.ssafy.petandmet.domain.Animal;
 import com.ssafy.petandmet.domain.Center;
 import com.ssafy.petandmet.dto.animal.*;
@@ -34,6 +35,8 @@ public class AnimalService {
 
     private final S3Service s3Service;
 
+    private final AnimalDao animalDao;
+
 
     @Transactional
     public void delete(String id) {
@@ -43,43 +46,14 @@ public class AnimalService {
         animalRepository.delete(findAnimal);
     }
 
-    public FindAnimalByIdResponse findOne(String uuid) {
+    public CreateAnimalRequest findOne(String uuid) {
 
-        Animal findAnimal = animalRepository.findById(uuid).orElseThrow(() -> {
-            throw new NullPointerException();
-        });
+        CreateAnimalRequest response = animalDao.findByAnimalId(uuid);
 
-        if (findAnimal.getPhotoUrl() != null && !findAnimal.getPhotoUrl().equals("")) {
-            String profileUrl = s3Service.getProfileUrl(findAnimal.getPhotoUrl());
-            findAnimal.setPhotoUrl(profileUrl);
+        if (response != null) {
+            return response;
         }
-
-        FindAnimalByIdResponse response = FindAnimalByIdResponse.builder()
-                .message("강아지 조회 성공")
-                .status("200")
-                .name(findAnimal.getName())
-                .age(findAnimal.getAge())
-                .specie(findAnimal.getSpecie())
-                .breed(findAnimal.getBreed())
-                .findPlace(findAnimal.getFindPlace())
-                .enterDate(findAnimal.getEnterDate())
-                .enterAge(findAnimal.getEnterAge())
-                .gender(findAnimal.getGender())
-                .adoptionStatus(findAnimal.getAdoptionStatus())
-                .adoptionStartDate(findAnimal.getAdoptionStartDate())
-                .noticeDate(findAnimal.getNoticeDate())
-                .character(findAnimal.getCharacterType())
-                .photoUrl(findAnimal.getPhotoUrl())
-                .build();
-
-        if (findAnimal.getCenter() != null) {
-            Center center = centerRepository.findById(findAnimal.getCenter().getUuid()).orElseThrow(() -> {
-                throw new NullPointerException();
-            });
-            response.setCenterUuid(center.getUuid());
-        }
-
-        return response;
+        return null;
     }
 
     @Transactional
@@ -111,6 +85,9 @@ public class AnimalService {
 
     public void join(MultipartFile image, CreateAnimalRequest request) throws FileUploadException {
         String animalUuid = UUID.randomUUID().toString();
+
+        animalDao.addAnimal(request, animalUuid);
+
         Center center = centerRepository.findById(request.getCenterUuid()).orElseThrow(() -> {
             throw new NullPointerException();
         });
